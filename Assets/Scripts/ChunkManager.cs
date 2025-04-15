@@ -5,7 +5,7 @@ public class ChunkManager : MonoBehaviour
 {
     [SerializeField] GameObject chunk;
     [SerializeField] GameObject[] chunks;
-    float[] chunkWeights = {4f,2f,2f};
+    float[] chunkWeights = {3f,3f,1f ,3f,2f};
     [SerializeField] PlayerController player;
     float spawnDist = 9.64f;
     float chunkSize = 9.64f;
