@@ -28,8 +28,8 @@ public class Spawner : MonoBehaviour
     public void SpawnEnemyAtOffset(Vector3 center)
     {
         // Generate a random offset for x and y in the range [1, 8]
-        float offsetX = Random.Range(2f, 8f);
-        float offsetY = Random.Range(2f, 8f);
+        float offsetX = Random.Range(4f, 6f);
+        float offsetY = Random.Range(4f, 6f);
         
         // Compute the spawn position using the random offsets.
         // If you're in a 2D game, z can remain 0 (or center.z if needed).

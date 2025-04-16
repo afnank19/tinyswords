@@ -3,52 +3,94 @@ using UnityEngine;
 
 public class ChunkManager : MonoBehaviour
 {
-    [SerializeField] GameObject chunk;
+    [SerializeField] GameObject spawnChunk;
     [SerializeField] GameObject[] chunks;
-    float[] chunkWeights = {3f,3f,1f ,3f,2f};
+    float[] chunkWeights = {3f,2f,1f ,2f,1f};
     [SerializeField] PlayerController player;
     float spawnDist = 9.64f;
     float chunkSize = 9.64f;
-    Dictionary<Vector3, GameObject> chunkHistory = new(); 
+    Dictionary<Vector3, GameObject> chunkHistory = new();
+
+    [SerializeField] GameObject[] leftChunks;
+    [SerializeField] GameObject[] rightChunks;
+    float[] leftChunkWeights = {1f};
+    float[] rightChunkWeights = {1f};
+    bool isLeft = true;
+     
 
     void Start()
     {
         Debug.Log(player.transform.position);
-        // Debug.Log(GetChunkCoordFromPosition(player.transform.position));
+        
+        // Vector3 currPlayerChunk = GetChunkCoordFromPosition(player.transform.position);
+        
+        Vector3 currChunk = new(0, 0, 0);
 
-        // Vector3 spawnPos = player.transform.position + new Vector3(9.64f,0);
-        // Vector3 sp2 = player.transform.position + new Vector3(9.64f,9.64f);
-        // Vector3 sp3 = player.transform.position + new Vector3(0,9.64f);
+            if (!chunkHistory.ContainsKey(currChunk))
+            {
+                Vector3 spawnPos = currChunk * spawnDist; // could use chunk size too
+                spawnPos = new(spawnPos.x - spawnDist/2, spawnPos.y - spawnDist/2); 
+                // ^^^adding a litte offset cuz the player is in the middle(0,0) of the screen
 
-        // Instantiate(chunk, player.transform.position, Quaternion.identity);
-        // Instantiate(chunk, spawnPos, Quaternion.identity);
-        // Instantiate(chunk, sp2, Quaternion.identity);
-        // Instantiate(chunk, sp3, Quaternion.identity);
+                GameObject spawnedChunk = Instantiate(spawnChunk, spawnPos, Quaternion.identity);
+                chunkHistory.Add(currChunk, spawnedChunk);
+            }
     }
 
     void Update()
     {
 
         Vector3 currPlayerChunk = GetChunkCoordFromPosition(player.transform.position);
+        // CODE BELOW IS FOR AN INFINITE WORLD
         // Debug.Log(currPlayerChunk);
-        for (int x = -1; x <= 1; x++) 
+        // for (int x = -1; x <= 1; x++) 
+        // {
+        //     for (int y = -1; y <= 1; y++)
+        //     {
+        //         Vector3 currChunk = new(currPlayerChunk.x + x, currPlayerChunk.y + y, 0);
+
+        //         if (!chunkHistory.ContainsKey(currChunk))
+        //         {
+        //             Vector3 spawnPos = currChunk * spawnDist; // could use chunk size too
+        //             spawnPos = new(spawnPos.x + 4.32f, spawnPos.y + 4.32f);
+
+        //             // Get a random chunk here!
+        //             GameObject chunk = GetWeightedRandomItem(chunks, chunkWeights);
+
+        //             GameObject spawnedChunk = Instantiate(chunk, spawnPos, Quaternion.identity);
+        //             chunkHistory.Add(currChunk, spawnedChunk);
+        //         }
+        //     }
+        // }
+        // int x = 0;
+
+        // CODE BELOW IS FOR AND INFINITE VERTICAL WORLD
+        for (int y = 0; y <= 1; y++)
         {
-            for (int y = -1; y <= 1; y++)
+            Vector3 currChunk = new(0, currPlayerChunk.y + y, 0);
+
+            if (!chunkHistory.ContainsKey(currChunk))
             {
-                Vector3 currChunk = new(currPlayerChunk.x + x, currPlayerChunk.y + y, 0);
+                Vector3 spawnPos = currChunk * spawnDist; // could use chunk size too
+                spawnPos = new(spawnPos.x - spawnDist/2, spawnPos.y - spawnDist/2); 
+                // ^^^adding a litte offset cuz the player is in the middle(0,0) of the screen
 
-                if (!chunkHistory.ContainsKey(currChunk))
-                {
-                    Vector3 spawnPos = currChunk * spawnDist; // could use chunk size too
-
-                    // Get a random chunk here!
-                    GameObject chunk = GetWeightedRandomItem(chunks, chunkWeights);
-
-                    GameObject spawnedChunk = Instantiate(chunk, spawnPos, Quaternion.identity);
-                    chunkHistory.Add(currChunk, spawnedChunk);
+                // Get a random chunk here!
+                GameObject chunk;
+                if (isLeft) {
+                    chunk = GetWeightedRandomItem(leftChunks, leftChunkWeights);
+                    isLeft = false;
+                } else {
+                    chunk = GetWeightedRandomItem(rightChunks, rightChunkWeights);
+                    isLeft = true;
                 }
+
+
+                GameObject spawnedChunk = Instantiate(chunk, spawnPos, Quaternion.identity);
+                chunkHistory.Add(currChunk, spawnedChunk);
             }
         }
+        
 
     }
 

@@ -83,4 +83,13 @@ public class PlayerController : MonoBehaviour
         // Attack logic
         ab.DisableAttackBox();
     }
+
+    public int GetPlayerYPos() {
+        return (int)transform.position.y;
+    }
+
+    public int GetPlayerHealth() 
+    {
+        return health;
+    }
 }
