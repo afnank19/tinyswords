@@ -30,11 +30,12 @@ public class EnemyAttackBox : MonoBehaviour
             // Debug.Log("Attacking player");
             // I think we should just trigger the animation here, 
             // and the animation can then call events on the enemy, which in turn will damage the player
-            enemy.TriggerAttack(); // could pass the damage
+            enemy.TriggerAttack(player); // could pass the damage
         }
     }
 
     public void DamagePlayer() {
+        Debug.Log(player);
         player.TakeDamage(5);
     }
 }

@@ -382,6 +382,7 @@ MonoBehaviour:
   anim: {fileID: 3672044229336262792}
   sr: {fileID: 8269772044883002158}
   eab: {fileID: 4663303708971500124}
+  player: {fileID: 0}
 --- !u!114 &6104707752250191212
 MonoBehaviour:
   m_ObjectHideFlags: 0

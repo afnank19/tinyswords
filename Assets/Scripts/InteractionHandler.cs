@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 public class InteractionHandler : MonoBehaviour
 {
     bool shopInRange = false;
-    [SerializeField] GameObject shopUI; 
+    // [SerializeField] GameObject shopUI; 
+    [SerializeField] ShopHandler sh;
     SpriteRenderer interactableIcon;
 
     void Start()
@@ -31,10 +32,11 @@ public class InteractionHandler : MonoBehaviour
     }
 
     public void InteractWithShop(InputAction.CallbackContext context) {
-        if (shopInRange && !shopUI.activeSelf) 
+        if (shopInRange) 
         {
             Debug.Log("Interacting wooohooo");
-            shopUI.SetActive(true);
+            // shopUI.SetActive(true);
+            sh.OpenShop();
             return;
         } 
     }

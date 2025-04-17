@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &212706626
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7311567775664692821, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_Name
+      value: SpawnerSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854542402639211168, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
 --- !u!1 &231561480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,6 +1499,8 @@ MonoBehaviour:
   player: {fileID: 1379559447}
   score: {fileID: 328093792}
   healthUi: {fileID: 999079652}
+  goldUI: {fileID: 0}
+  spawnerBroker: {fileID: 512662591540919337, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
 --- !u!114 &802548540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1455,6 +1514,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopUI: {fileID: 1896227700}
+  healCostUI: {fileID: 0}
+  upgradeCostUI: {fileID: 0}
+  healButton: {fileID: 1819346147}
+  upgradeButton: {fileID: 1844567871}
+  player: {fileID: 1379559447}
 --- !u!1 &999079650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,7 +2791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b4cd046ab605b4398b80e45b4c81b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopUI: {fileID: 1896227700}
+  sh: {fileID: 802548540}
 --- !u!58 &1640810467
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3229,7 +3293,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1819346148}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 802548540}
+        m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
+        m_MethodName: HealPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1819346148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3441,7 +3517,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1844567872}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 802548540}
+        m_TargetAssemblyTypeName: ShopHandler, Assembly-CSharp
+        m_MethodName: UpgradePlayerDamagae
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1844567872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7614,11 +7702,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6663816674580618430, guid: 42f3ab018e252004388fb7861ea2f030, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.34
+      value: 1.88
       objectReference: {fileID: 0}
     - target: {fileID: 6663816674580618430, guid: 42f3ab018e252004388fb7861ea2f030, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.16
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 6663816674580618430, guid: 42f3ab018e252004388fb7861ea2f030, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7662,7 +7750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8088827312642958081, guid: 42f3ab018e252004388fb7861ea2f030, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9856,11 +9944,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1741260279262031124, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.73
+      value: -2.91
       objectReference: {fileID: 0}
     - target: {fileID: 1741260279262031124, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.21
+      value: 2.36
       objectReference: {fileID: 0}
     - target: {fileID: 1741260279262031124, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9894,13 +9982,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3902366137858992943, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5693196911372747198, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
       propertyPath: m_Name
       value: Goblin
       objectReference: {fileID: 0}
     - target: {fileID: 5693196911372747198, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7610999869338435422, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
       propertyPath: m_Enabled
@@ -9927,3 +10019,4 @@ SceneRoots:
   - {fileID: 1780839223}
   - {fileID: 1286893070}
   - {fileID: 1527966392}
+  - {fileID: 212706626}

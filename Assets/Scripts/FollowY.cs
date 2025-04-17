@@ -12,4 +12,9 @@ public class FollowY : MonoBehaviour
         Vector3 playerPos = player.transform.position;
         transform.position = new(fixedX, playerPos.y, playerPos.z);
     }
+
+    public void TestCallFromPrefab()
+    {
+        Debug.Log("Ind spwnr call");
+    }
 }

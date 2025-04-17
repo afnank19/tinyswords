@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer sr;
     [SerializeField] EnemyAttackBox eab;
+    [SerializeField] PlayerController player;
     float knockbackDuration = 0.25f;
     float knockbackTimer = 0.0f;
     bool knockedBack;
@@ -74,13 +75,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TriggerAttack() {
+    public virtual void TriggerAttack(PlayerController playerRef) {
+        player = playerRef;
+
         anim.SetTrigger("Attack");
         eab.DisableAttackBox();
     }
 
     public void Attack() {
-        eab.DamagePlayer();
+        // eab.DamagePlayer();
+        player.TakeDamage(5);
         eab.EnableAttackBox();
     }
 }

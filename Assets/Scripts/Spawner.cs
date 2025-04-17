@@ -3,6 +3,8 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
+    int spawnCount = 0;
+    [SerializeField] SpawnerBroker spawnerBroker;
 
     public float spawnDistance = 1f;
 
@@ -28,8 +30,8 @@ public class Spawner : MonoBehaviour
     public void SpawnEnemyAtOffset(Vector3 center)
     {
         // Generate a random offset for x and y in the range [1, 8]
-        float offsetX = Random.Range(4f, 6f);
-        float offsetY = Random.Range(4f, 6f);
+        float offsetX = Random.Range(4f, 5f);
+        float offsetY = Random.Range(4f, 5f);
         
         // Compute the spawn position using the random offsets.
         // If you're in a 2D game, z can remain 0 (or center.z if needed).
@@ -42,7 +44,16 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        SpawnEnemyAtOffset(transform.localPosition);
-        SpawnEnemyAtOffset(transform.localPosition);
+        Debug.Log(spawnerBroker.GetSpawnCount());
+        spawnCount = spawnerBroker.GetSpawnCount();
+        for (int i = 0; i < spawnCount; i++)
+        {
+            SpawnEnemyAtOffset(transform.localPosition);
+        }
+    }
+
+    public void UpdateSpawnCount(int increment)
+    {
+        spawnCount += increment;
     }
 }

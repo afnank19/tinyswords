@@ -382,6 +382,7 @@ MonoBehaviour:
   anim: {fileID: 1913215925026489463}
   sr: {fileID: 5428379619587356389}
   eab: {fileID: 3902366137858992943}
+  player: {fileID: 0}
 --- !u!114 &5165759359078258833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,3 +395,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee789aac502ada34eb2affb35b79e507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
+  rb: {fileID: 5748519239433294585}
+  knockbackForce: 5
+  anim: {fileID: 1913215925026489463}
+  sr: {fileID: 5428379619587356389}
+  eab: {fileID: 3902366137858992943}
+  player: {fileID: 0}

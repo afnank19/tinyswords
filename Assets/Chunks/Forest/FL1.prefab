@@ -1111,6 +1111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 5693196911372747198, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
+  spawnerBroker: {fileID: 512662591540919337, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
   spawnDistance: 1
 --- !u!1 &5214228575602237535
 GameObject:

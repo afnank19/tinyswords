@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private int health = 30;
+    private int maxHealth = 30;
+    private int health;
+    private int gold = 100;
     private float moveSpeed = 1.5f;
     public Rigidbody2D rb;
     public Vector2 moveInput;
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -91,5 +94,46 @@ public class PlayerController : MonoBehaviour
     public int GetPlayerHealth() 
     {
         return health;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public int GetPlayerGold()
+    {
+        return gold;
+    }
+
+    public void HealPlayer(int healAmt, int cost)
+    {
+        if (health >= maxHealth)
+        {
+            return;
+        }
+
+        if (gold < cost) 
+        {
+            return;
+        }
+
+        gold -= cost;
+        health += healAmt;
+        if (health > maxHealth) 
+        {
+            health = maxHealth;
+        }
+    }
+
+    public void UpgradeDamage(int damangeIncrement, int cost)
+    {
+        if (gold < cost) 
+        {
+            return;
+        }
+
+        gold -= cost;
+        ab.IncrementDamage(damangeIncrement);
     }
 }

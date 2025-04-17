@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackBox : MonoBehaviour
 {
-    readonly int damage = 5;
+    int damage = 5;
     BoxCollider2D bc;
 
     void Start()
@@ -41,5 +41,10 @@ public class AttackBox : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x = 1;
         transform.localScale = scale;
+    }
+
+    public void IncrementDamage(int newDamage) 
+    {
+        damage += newDamage;
     }
 }
