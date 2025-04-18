@@ -44,8 +44,17 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(spawnerBroker.GetSpawnCount());
-        spawnCount = spawnerBroker.GetSpawnCount();
+        // Debug.Log(spawnerBroker.GetSpawnCount());
+        // spawnCount = spawnerBroker.GetSpawnCount();
+        // for (int i = 0; i < spawnCount; i++)
+        // {
+        //     SpawnEnemyAtOffset(transform.localPosition);
+        // }
+    }
+
+    // This will be called as soon as the chunk is spawned
+    public void SpawnEnemies(int spawnCount)
+    {
         for (int i = 0; i < spawnCount; i++)
         {
             SpawnEnemyAtOffset(transform.localPosition);

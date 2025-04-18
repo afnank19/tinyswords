@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         health = maxHealth;
+
+        GoldPouchItem.OnGoldPouchCollect += AddToGold;
     }
 
     // Update is called once per frame
@@ -124,6 +126,11 @@ public class PlayerController : MonoBehaviour
         {
             health = maxHealth;
         }
+    }
+
+    public void AddToGold(int amount)
+    {
+        gold += amount;
     }
 
     public void UpgradeDamage(int damangeIncrement, int cost)

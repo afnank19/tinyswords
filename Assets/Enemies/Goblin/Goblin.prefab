@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29b78328c16c5a43b19a42d5cdf8a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2365169204546604639}
+  enemy: {fileID: 5165759359078258833}
   player: {fileID: 0}
 --- !u!61 &7434455346630830429
 BoxCollider2D:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2c9f4d78c212f4ea3056ba71dd8f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 2365169204546604639}
+  enemy: {fileID: 5165759359078258833}
 --- !u!1 &5693196911372747198
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +188,6 @@ GameObject:
   - component: {fileID: 1913215925026489463}
   - component: {fileID: 2716505344030569274}
   - component: {fileID: 5748519239433294585}
-  - component: {fileID: 2365169204546604639}
   - component: {fileID: 5165759359078258833}
   m_Layer: 6
   m_Name: Goblin
@@ -364,25 +363,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2365169204546604639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5693196911372747198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2830cb9a09b3b43ba1c773f28b5791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  rb: {fileID: 5748519239433294585}
-  knockbackForce: 5
-  anim: {fileID: 1913215925026489463}
-  sr: {fileID: 5428379619587356389}
-  eab: {fileID: 3902366137858992943}
-  player: {fileID: 0}
 --- !u!114 &5165759359078258833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,8 +377,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   rb: {fileID: 5748519239433294585}
-  knockbackForce: 5
+  knockbackForce: 2.5
   anim: {fileID: 1913215925026489463}
   sr: {fileID: 5428379619587356389}
   eab: {fileID: 3902366137858992943}
   player: {fileID: 0}
+  lootItems:
+  - itemPrefab: {fileID: 371733696482748491, guid: 075fa3530a04c744190bb98be82eb21c, type: 3}
+    dropChance: 79.5

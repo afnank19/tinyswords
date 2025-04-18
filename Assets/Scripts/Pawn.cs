@@ -1,16 +1,25 @@
 using UnityEngine;
 
-public class Pawn : MonoBehaviour
+public class Pawn : Enemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    int pawnHealth = 10;
+    int damage = 5;
+
+    public override void Attack()
     {
-        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerController pc = player.GetComponent<PlayerController>();
+        pc.TakeDamage(damage);
+        eab.EnableAttackBox();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TakeDamage(int amount, Vector2 sourcePos)
     {
-        
+        pawnHealth -= amount;
+        ApplyKnockback(sourcePos);
+
+        if (pawnHealth <= 0) {
+            Die();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,11 +10,14 @@ public class Enemy : MonoBehaviour
     private readonly float moveSpeed = 1f;
     [SerializeField] Animator anim;
     [SerializeField] SpriteRenderer sr;
-    [SerializeField] EnemyAttackBox eab;
-    [SerializeField] PlayerController player;
+    [SerializeField] public EnemyAttackBox eab;
+    [SerializeField] public PlayerController player;
     float knockbackDuration = 0.25f;
     float knockbackTimer = 0.0f;
     bool knockedBack;
+
+    [Header("Loot")]
+    public List<LootItem> lootItems = new();
 
     void Update()
     {
@@ -28,7 +32,7 @@ public class Enemy : MonoBehaviour
 
 
 
-    public void TakeDamage(int amount, Vector2 sourcePos) 
+    public virtual void TakeDamage(int amount, Vector2 sourcePos) 
     {
         health -= amount;
         ApplyKnockback(sourcePos);
@@ -40,8 +44,25 @@ public class Enemy : MonoBehaviour
 
     public void Die() 
     {
+        foreach (LootItem lootItem in lootItems) 
+        {
+            if (Random.Range(0f,100f) <= lootItem.dropChance)
+            {
+                InstantiateLoot(lootItem.itemPrefab);
+            }
+            break;
+        }
+
         Destroy(gameObject);
         // and other things, maybe spawn a resource
+    }
+
+    void InstantiateLoot(GameObject loot)
+    {
+        if (loot)
+        {
+            Instantiate(loot, transform.position, Quaternion.identity);
+        }
     }
 
     public void ApplyKnockback(Vector2 sourcePosition)
@@ -75,15 +96,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void TriggerAttack(PlayerController playerRef) {
+    public void TriggerAttack(PlayerController playerRef) {
         player = playerRef;
 
         anim.SetTrigger("Attack");
         eab.DisableAttackBox();
     }
 
-    public void Attack() {
+    public virtual void Attack() {
         // eab.DamagePlayer();
+        Debug.Log("Parent attack");
         player.TakeDamage(5);
         eab.EnableAttackBox();
     }

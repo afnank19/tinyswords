@@ -71,7 +71,7 @@ public class ShopHandler : MonoBehaviour
 
     private void RefreshCostUI()
     {
-        // healCostUI.text = healCost.ToString();
-        // upgradeCostUI.text = dmgUpgradeCost.ToString();
+        healCostUI.text = healCost.ToString();
+        upgradeCostUI.text = dmgUpgradeCost.ToString();
     }
 }

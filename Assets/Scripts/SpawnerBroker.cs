@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class SpawnerBroker : MonoBehaviour
 {
-    int spawnCount = 2;
+    [SerializeField] int spawnCount = 2;
+
+    void Start()
+    {
+        spawnCount = 2;
+    }
 
     public int GetSpawnCount()
     {

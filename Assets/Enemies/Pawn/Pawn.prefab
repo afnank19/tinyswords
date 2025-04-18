@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29b78328c16c5a43b19a42d5cdf8a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3000682398713441644}
+  enemy: {fileID: 6104707752250191212}
   player: {fileID: 0}
 --- !u!61 &2102537316203304495
 BoxCollider2D:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2c9f4d78c212f4ea3056ba71dd8f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 3000682398713441644}
+  enemy: {fileID: 6104707752250191212}
 --- !u!1 &8088827312642958081
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +188,6 @@ GameObject:
   - component: {fileID: 6381616079717845580}
   - component: {fileID: 2146384428623529071}
   - component: {fileID: 3672044229336262792}
-  - component: {fileID: 3000682398713441644}
   - component: {fileID: 6104707752250191212}
   m_Layer: 6
   m_Name: Pawn
@@ -364,25 +363,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3000682398713441644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8088827312642958081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2830cb9a09b3b43ba1c773f28b5791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  rb: {fileID: 2146384428623529071}
-  knockbackForce: 2.5
-  anim: {fileID: 3672044229336262792}
-  sr: {fileID: 8269772044883002158}
-  eab: {fileID: 4663303708971500124}
-  player: {fileID: 0}
 --- !u!114 &6104707752250191212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,3 +375,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf1b8df93309684189ef367453a456c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
+  rb: {fileID: 2146384428623529071}
+  knockbackForce: 2.5
+  anim: {fileID: 3672044229336262792}
+  sr: {fileID: 8269772044883002158}
+  eab: {fileID: 4663303708971500124}
+  player: {fileID: 0}
+  lootItems:
+  - itemPrefab: {fileID: 371733696482748491, guid: 075fa3530a04c744190bb98be82eb21c, type: 3}
+    dropChance: 55.1

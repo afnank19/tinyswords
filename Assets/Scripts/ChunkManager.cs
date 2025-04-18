@@ -17,6 +17,7 @@ public class ChunkManager : MonoBehaviour
     float[] rightChunkWeights = {1f};
     bool isLeft = true;
      
+    int spawnCount = 1;
 
     void Start()
     {
@@ -64,7 +65,7 @@ public class ChunkManager : MonoBehaviour
         // }
         // int x = 0;
 
-        // CODE BELOW IS FOR AND INFINITE VERTICAL WORLD
+        // CODE BELOW IS FOR AN INFINITE VERTICAL WORLD
         for (int y = 0; y <= 1; y++)
         {
             Vector3 currChunk = new(0, currPlayerChunk.y + y, 0);
@@ -87,6 +88,14 @@ public class ChunkManager : MonoBehaviour
 
 
                 GameObject spawnedChunk = Instantiate(chunk, spawnPos, Quaternion.identity);
+                Spawner spawner = spawnedChunk.GetComponent<Spawner>();
+
+                if (spawner != null)
+                {
+                    spawner.SpawnEnemies(spawnCount);
+                }
+
+
                 chunkHistory.Add(currChunk, spawnedChunk);
             }
         }
@@ -132,5 +141,10 @@ public class ChunkManager : MonoBehaviour
 
         // Fallback, should never really happen if weights and items are correct.
         return items[items.Length - 1];
+    }
+
+    public void IncrementSpawnCount(int increment) 
+    {
+        spawnCount += increment;
     }
 }

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthUi;
     [SerializeField] TextMeshProUGUI goldUI;
     [SerializeField] SpawnerBroker spawnerBroker;
+    [SerializeField] ChunkManager chunkManager;
     // [SerializeField] Spawner spawner;
     int Height = 0; // this is the score for the game
     int milestone = 50;
@@ -21,14 +22,14 @@ public class GameManager : MonoBehaviour
         if (Height > milestone)
         {
             Debug.Log("Upgrade difficulty");
-            // spawner.UpdateSpawnCount(1);
-            spawnerBroker.IncrementSpawnCount(1);
+            // spawnerBroker.IncrementSpawnCount(1);
+            chunkManager.IncrementSpawnCount(1);
             milestone += 50;
         }
 
         // Debug.Log(Height);
         score.text = Height.ToString() + "m";
-        healthUi.text ="Health: " + player.GetPlayerHealth().ToString();
-        // goldUI.text = "Gold: " + player.GetPlayerGold().ToString();
+        healthUi.text = player.GetPlayerHealth().ToString();
+        goldUI.text = player.GetPlayerGold().ToString();
     }
 }
