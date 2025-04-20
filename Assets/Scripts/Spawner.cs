@@ -5,6 +5,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] GameObject enemy;
     int spawnCount = 0;
     [SerializeField] SpawnerBroker spawnerBroker;
+    [SerializeField] GameObject[] spawnPoints;
 
     public float spawnDistance = 1f;
 
@@ -30,8 +31,8 @@ public class Spawner : MonoBehaviour
     public void SpawnEnemyAtOffset(Vector3 center)
     {
         // Generate a random offset for x and y in the range [1, 8]
-        float offsetX = Random.Range(4f, 5f);
-        float offsetY = Random.Range(4f, 5f);
+        float offsetX = Random.Range(0f, 1f);
+        float offsetY = Random.Range(0f, 1f);
         
         // Compute the spawn position using the random offsets.
         // If you're in a 2D game, z can remain 0 (or center.z if needed).
@@ -57,7 +58,8 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            SpawnEnemyAtOffset(transform.localPosition);
+            GameObject randSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            SpawnEnemyAtOffset(randSpawnPoint.transform.position);
         }
     }
 

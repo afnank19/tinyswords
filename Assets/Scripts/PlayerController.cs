@@ -15,7 +15,13 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     bool canMove = true;
     Vector2 lastMoveInput;
+    /*---------------------SOUNDS---------------------*/
     [SerializeField] AttackBox ab;
+    [SerializeField] private AudioClip[] walkSounds;
+    [SerializeField] private AudioClip[] attackSounds;
+    [SerializeField] private AudioClip[] dmgSounds;
+    [SerializeField] private AudioClip pickupSound;
+    /*---------------------EVENTS---------------------*/
     public static event Action OnDie;
     void Start()
     {
@@ -33,6 +39,7 @@ public class PlayerController : MonoBehaviour
         if (canMove) {
             if (moveInput != Vector2.zero) {
                 anim.SetBool("isMoving", true);
+                SoundFXManager.instance.PlaySoundFXClipAfterAnother(walkSounds, transform, 0.4f);
             } else {
                 anim.SetBool("isMoving", false);
             }
@@ -51,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context) {
         moveInput = context.ReadValue<Vector2>();
+        // SoundFXManager.instance.PlaySoundFXClip(walkSound, transform, 1f);
     }
 
     public void TriggerAttack(InputAction.CallbackContext context) 
@@ -63,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int amount) {
         health -= amount;
+        SoundFXManager.instance.PlayRandomSoundFXClip(dmgSounds, transform, 0.7f);
 
         Debug.Log(health);
         if (health <= 0) {
@@ -72,6 +81,7 @@ public class PlayerController : MonoBehaviour
 
     // This method is triggered by an anim event so that it matches up with the sword swing
     public void Attack() {
+        SoundFXManager.instance.PlayRandomSoundFXClip(attackSounds, transform, 1f);
         ab.EnableAttackBox();
     }
 
@@ -131,6 +141,10 @@ public class PlayerController : MonoBehaviour
 
     public void AddToGold(int amount)
     {
+        // if (gameObject != null)
+        // {
+        //     SoundFXManager.instance.PlaySoundFXClip(pickupSound, transform, 0.7f);
+        // }
         gold += amount;
     }
 

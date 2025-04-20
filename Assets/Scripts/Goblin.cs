@@ -4,9 +4,11 @@ public class Goblin : Enemy
 {
     int damage = 10;
     int goblinHealth = 20;
+    [SerializeField] AudioClip[] attackSounds;
 
     public override void Attack()
     {
+        SoundFXManager.instance.PlayRandomSoundFXClip(attackSounds, transform, 0.6f);
         // base.Attack();
         Debug.Log("Child Attack");
         // eab.DamagePlayer();

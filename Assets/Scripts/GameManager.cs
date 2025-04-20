@@ -62,5 +62,10 @@ public class GameManager : MonoBehaviour
         int idx = SceneManager.GetActiveScene().buildIndex;
         // Reload it
         SceneManager.LoadScene(idx);
-    }//
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

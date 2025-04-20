@@ -11,17 +11,28 @@ public class ShopHandler : MonoBehaviour
     [SerializeField] Button upgradeButton;
     [SerializeField] PlayerController player;
 
+    [SerializeField] AudioClip openShop;
+    [SerializeField] AudioClip closeShop;
+
     private int healCost = 25;
     private int dmgUpgradeCost = 100;
     int healing = 10;
     int damangeIncrement = 5;
 
     public void CloseShop() {
+        if (shopUI.activeSelf)
+        {
+            SoundFXManager.instance.PlaySoundFXClip(closeShop, transform, 0.7f);
+        }
         shopUI.SetActive(false);
     }
 
     public void OpenShop()
     {
+        if (!shopUI.activeSelf)
+        {
+            SoundFXManager.instance.PlaySoundFXClip(openShop, transform, 0.7f);
+        }
         RefreshCostUI();
         shopUI.SetActive(true);
         checkAvailable();

@@ -5,9 +5,11 @@ public class GoldPouchItem : MonoBehaviour
 {
     [SerializeField] int goldAmount = 30;
     public static event Action<int> OnGoldPouchCollect;
+    [SerializeField] private AudioClip collectSound;
     public void Collect()
     {
         // Update player gold here
+        SoundFXManager.instance.PlaySoundFXClip(collectSound, transform, 0.7f);
         OnGoldPouchCollect.Invoke(goldAmount);
 
         Destroy(gameObject);

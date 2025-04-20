@@ -161,3 +161,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldAmount: 30
+  collectSound: {fileID: 8300000, guid: c98296e4c7915ae4d9414cb4aff7cc1d, type: 3}

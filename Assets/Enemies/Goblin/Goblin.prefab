@@ -382,6 +382,11 @@ MonoBehaviour:
   sr: {fileID: 5428379619587356389}
   eab: {fileID: 3902366137858992943}
   player: {fileID: 0}
+  knockedBack: 0
   lootItems:
   - itemPrefab: {fileID: 371733696482748491, guid: 075fa3530a04c744190bb98be82eb21c, type: 3}
     dropChance: 79.5
+  attackSounds:
+  - {fileID: 8300000, guid: 401770a090f71ff4da3b606ba3e03fd5, type: 3}
+  - {fileID: 8300000, guid: e24ab6bb33f27864bbafccd9c7e03810, type: 3}
+  - {fileID: 8300000, guid: 22eea6eaf11a92644b708e68c0df2ce4, type: 3}
