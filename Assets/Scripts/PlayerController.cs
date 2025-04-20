@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,9 +15,8 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     bool canMove = true;
     Vector2 lastMoveInput;
-
     [SerializeField] AttackBox ab;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public static event Action OnDie;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log(health);
         if (health <= 0) {
+            OnDie.Invoke();
         }
     }
 

@@ -4,17 +4,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int health = 10; // set the health for each enemy in the prefab
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] float knockbackForce = 2.5f;
+    [SerializeField] public Rigidbody2D rb;
+    [SerializeField] float knockbackForce = 10.5f; // 2.5
     // [SerializeField] float knockbackDuration = 0.2f;
     private readonly float moveSpeed = 1f;
-    [SerializeField] Animator anim;
-    [SerializeField] SpriteRenderer sr;
+    [SerializeField] public Animator anim;
+    [SerializeField] public SpriteRenderer sr;
     [SerializeField] public EnemyAttackBox eab;
     [SerializeField] public PlayerController player;
-    float knockbackDuration = 0.25f;
+    float knockbackDuration = 0.35f; // 0.25
     float knockbackTimer = 0.0f;
-    bool knockedBack;
+    public bool knockedBack;
 
     [Header("Loot")]
     public List<LootItem> lootItems = new();
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
         rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
     }
 
-    public void Move(Vector2 moveInput) 
+    public virtual void Move(Vector2 moveInput) 
     {
         if (!knockedBack) 
         {

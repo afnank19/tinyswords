@@ -4,6 +4,7 @@ public class Pawn : Enemy
 {
     int pawnHealth = 10;
     int damage = 5;
+    float pawnMoveSpeed = 1.5f;
 
     public override void Attack()
     {
@@ -20,6 +21,26 @@ public class Pawn : Enemy
 
         if (pawnHealth <= 0) {
             Die();
+        }
+    }
+
+    public override void Move(Vector2 moveInput)
+    {
+        if (!knockedBack) 
+        {
+            if (moveInput != Vector2.zero) {
+                anim.SetBool("isMoving", true);
+            } else {
+                anim.SetBool("isMoving", false);
+            }
+
+            if (moveInput.x > 0.0f) {
+                sr.flipX = false;
+            } else if (moveInput.x < 0.0f) {
+                sr.flipX = true;
+            }
+
+            rb.linearVelocity = moveInput * pawnMoveSpeed;
         }
     }
 }

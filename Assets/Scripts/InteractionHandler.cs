@@ -34,7 +34,7 @@ public class InteractionHandler : MonoBehaviour
     public void InteractWithShop(InputAction.CallbackContext context) {
         if (shopInRange) 
         {
-            Debug.Log("Interacting wooohooo");
+            // Debug.Log("Interacting wooohooo");
             // shopUI.SetActive(true);
             sh.OpenShop();
             return;
