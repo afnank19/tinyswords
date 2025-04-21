@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GoldPouchItem : MonoBehaviour
 {
-    [SerializeField] int goldAmount = 30;
+    [SerializeField] int goldAmount = 10;
     public static event Action<int> OnGoldPouchCollect;
     [SerializeField] private AudioClip collectSound;
     public void Collect()

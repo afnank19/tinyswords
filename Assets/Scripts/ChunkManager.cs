@@ -13,8 +13,8 @@ public class ChunkManager : MonoBehaviour
 
     [SerializeField] GameObject[] leftChunks;
     [SerializeField] GameObject[] rightChunks;
-    float[] leftChunkWeights = {5f, 1f};
-    float[] rightChunkWeights = {1f};
+    float[] leftChunkWeights = {5f,5f, 1f};
+    float[] rightChunkWeights = {1f, 1f};
     bool isLeft = true;
      
     int spawnCount = 1;

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject LoseUI;
     [SerializeField] TextMeshProUGUI distanceTravelledUI;
+    [SerializeField] GameObject PauseScreen;
 
 
     void Start()
@@ -28,6 +30,19 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameSysHandler.instance.GetPauseState() == true)
+        {
+            if (!LoseUI.activeSelf)
+            {
+                PauseScreen.SetActive(true);
+            }
+            Time.timeScale = 0f;
+        } else 
+        {
+            PauseScreen.SetActive(false);
+            Time.timeScale = 1f;
+        }
+
         Height = player.GetPlayerYPos() * 2;
 
         if (Height > milestone)
@@ -48,10 +63,9 @@ public class GameManager : MonoBehaviour
     {
         if(LoseUI != null)
         {
-            // LoseUI = GameObject.Find("Canvas/YouLose");
-            Debug.Log(LoseUI);
             LoseUI.SetActive(true);
-            Time.timeScale = 0f;
+            // Time.timeScale = 0f;
+            GameSysHandler.instance.ForcePauseGame();
 
             distanceTravelledUI.text = "Distance Travelled: " + Height + "m";
         }
@@ -67,5 +81,12 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void PauseGame(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        GameSysHandler.instance.TogglePause();
     }
 }

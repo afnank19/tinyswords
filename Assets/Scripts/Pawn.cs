@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Pawn : Enemy
 {
-    int pawnHealth = 10;
+    int pawnHealth = 15;
     int damage = 5;
-    float pawnMoveSpeed = 1.5f;
+    float pawnMoveSpeed = 1.15f;
 
     public override void Attack()
     {

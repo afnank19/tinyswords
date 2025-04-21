@@ -1420,6 +1420,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8088827312642958081, guid: 42f3ab018e252004388fb7861ea2f030, type: 3}
+  enemyPool:
+  - {fileID: 8088827312642958081, guid: 42f3ab018e252004388fb7861ea2f030, type: 3}
+  - {fileID: 5693196911372747198, guid: ac03211737f22894fabaa7e7197bdb1b, type: 3}
+  - {fileID: 7683783478947476055, guid: babe947b0b4eb49469463e16c18129d4, type: 3}
+  enemyCosts: 010000000200000005000000
   spawnerBroker: {fileID: 512662591540919337, guid: 4cbcf5ca941fa224793af1e7e199e25b, type: 3}
   spawnPoints:
   - {fileID: 8211934587322663284}

@@ -15,7 +15,7 @@ public class ShopHandler : MonoBehaviour
     [SerializeField] AudioClip closeShop;
 
     private int healCost = 25;
-    private int dmgUpgradeCost = 100;
+    private int dmgUpgradeCost = 150;
     int healing = 10;
     int damangeIncrement = 5;
 

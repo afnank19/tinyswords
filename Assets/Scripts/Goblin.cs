@@ -3,7 +3,7 @@ using UnityEngine;
 public class Goblin : Enemy
 {
     int damage = 10;
-    int goblinHealth = 20;
+    int goblinHealth = 25;
     [SerializeField] AudioClip[] attackSounds;
 
     public override void Attack()
