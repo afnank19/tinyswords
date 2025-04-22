@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip[] attackSounds;
     [SerializeField] private AudioClip[] dmgSounds;
     [SerializeField] private AudioClip pickupSound;
+    [SerializeField] private AudioClip dashSound;
     /*---------------------EVENTS---------------------*/
     public static event Action OnDie;
     /*---------------------MECHANICS---------------------*/
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     bool isDashing = false;
     bool canDash = true;
+    bool isInvincible = false;
 
     void Start()
     {
@@ -80,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
         if (!canDash) return;
 
+        SoundFXManager.instance.PlaySoundFXClip(dashSound, transform, 0.7f);
         StartCoroutine(Dash());
     }
 
@@ -87,11 +90,18 @@ public class PlayerController : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        isInvincible = true;
+        anim.SetBool("isDashing", isDashing);
+
         rb.linearVelocity = moveInput * dashSpeed;
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
+        anim.SetBool("isDashing", isDashing);
 
-        yield return new WaitForSeconds(dashCooldown);
+        yield return new WaitForSeconds(dashCooldown - 0.3f);
+        isInvincible = false;
+
+        yield return new WaitForSeconds(dashCooldown - 0.7f);
         canDash = true;
     }
 
@@ -104,7 +114,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void TakeDamage(int amount) {
-        if (isDashing) return;
+        if (isInvincible) return;
 
         health -= amount;
         SoundFXManager.instance.PlayRandomSoundFXClip(dmgSounds, transform, 0.7f);

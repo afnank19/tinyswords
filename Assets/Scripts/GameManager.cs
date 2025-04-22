@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI goldUI;
     [SerializeField] SpawnerBroker spawnerBroker;
     [SerializeField] ChunkManager chunkManager;
+    [SerializeField] GameObject TutorialScreen;
     // [SerializeField] Spawner spawner;
     int Height = 0; // this is the score for the game
     int milestone = 50;
@@ -20,11 +21,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI distanceTravelledUI;
     [SerializeField] GameObject PauseScreen;
 
+    private string TutorialKey = "TutorialSeen";
 
     void Start()
     {
         PlayerController.OnDie += GameOver;
         Time.timeScale = 1f;
+
+        if (PlayerPrefs.HasKey(TutorialKey))
+        {
+            CloseTutorial();
+        }
     }
 
     // Update is called once per frame
@@ -88,5 +95,11 @@ public class GameManager : MonoBehaviour
         if (!context.performed) return;
 
         GameSysHandler.instance.TogglePause();
+    }
+
+    public void CloseTutorial()
+    {
+        TutorialScreen.SetActive(false);
+        PlayerPrefs.SetInt(TutorialKey, 1);
     }
 }
