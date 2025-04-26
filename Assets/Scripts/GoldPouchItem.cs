@@ -8,7 +8,7 @@ public class GoldPouchItem : MonoBehaviour
     [SerializeField] private AudioClip collectSound;
     public void Collect()
     {
-        // Update player gold here
+        // Update player gold here 
         SoundFXManager.instance.PlaySoundFXClip(collectSound, transform, 0.7f);
         OnGoldPouchCollect.Invoke(goldAmount);
 

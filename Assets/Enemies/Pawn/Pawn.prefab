@@ -81,7 +81,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.13, y: -0.062489018}
+  m_Offset: {x: 0.04, y: -0.062489018}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -91,7 +91,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.89, y: 0.43065593}
+  m_Size: {x: 0.8, y: 0.49}
   m_EdgeRadius: 0
 --- !u!1 &5430888687209390070
 GameObject:
@@ -382,6 +382,7 @@ MonoBehaviour:
   sr: {fileID: 8269772044883002158}
   eab: {fileID: 4663303708971500124}
   player: {fileID: 0}
+  knockedBack: 0
   lootItems:
   - itemPrefab: {fileID: 371733696482748491, guid: 075fa3530a04c744190bb98be82eb21c, type: 3}
     dropChance: 55.1

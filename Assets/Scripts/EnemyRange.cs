@@ -16,7 +16,7 @@ public class EnemyRange : MonoBehaviour
             
             Vector3 dir = player.transform.position - transform.position;
 
-            if (dir.magnitude > 0.6f) {
+            if (dir.magnitude > 0.5f) {
                 enemy.Move(dir.normalized);
             }
 

@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 419647449}
   - component: {fileID: 419647448}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Game Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -463,10 +463,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tiny Swords
+  m_text: EverWalk
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d9ea3eacd166ca64b97936e126971c4c, type: 2}
-  m_sharedMaterial: {fileID: -494500195581504185, guid: d9ea3eacd166ca64b97936e126971c4c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d25d10fdd7e98fc4281f18ce22d4877e, type: 2}
+  m_sharedMaterial: {fileID: 6244836409728801970, guid: d25d10fdd7e98fc4281f18ce22d4877e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

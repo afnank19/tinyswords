@@ -147,7 +147,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.15
+  m_Radius: 0.21
 --- !u!114 &8854845422984288827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,5 +160,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10134b33fc7f8c94ab72a69ac79ba7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldAmount: 30
+  goldAmount: 10
   collectSound: {fileID: 8300000, guid: c98296e4c7915ae4d9414cb4aff7cc1d, type: 3}

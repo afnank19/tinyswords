@@ -10,7 +10,7 @@ public class EnemyKnight : Enemy
     {
         SoundFXManager.instance.PlayRandomSoundFXClip(attackSounds, transform, 0.6f);
         // base.Attack();
-        Debug.Log("Child Attack");
+        // Debug.Log("Child Attack");
         // eab.DamagePlayer();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerController pc = player.GetComponent<PlayerController>();

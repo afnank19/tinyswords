@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,12 @@ public class ChunkManager : MonoBehaviour
 
     [SerializeField] GameObject[] leftChunks;
     [SerializeField] GameObject[] rightChunks;
-    float[] leftChunkWeights = {5f,5f, 1f};
+    float[] leftChunkWeights = {5f,5f, 1.5f};
     float[] rightChunkWeights = {1f, 1f};
     bool isLeft = true;
      
     int spawnCount = 1;
+    int milestone = 150;
 
     void Start()
     {
@@ -68,7 +70,7 @@ public class ChunkManager : MonoBehaviour
         // CODE BELOW IS FOR AN INFINITE VERTICAL WORLD
         for (int y = 0; y <= 1; y++)
         {
-            Vector3 currChunk = new(0, currPlayerChunk.y + y, 0);
+            Vector3 currChunk = new(0, Math.Abs(currPlayerChunk.y + y), 0);
 
             if (!chunkHistory.ContainsKey(currChunk))
             {
@@ -79,7 +81,15 @@ public class ChunkManager : MonoBehaviour
                 // Get a random chunk here!
                 GameObject chunk;
                 if (isLeft) {
-                    chunk = GetWeightedRandomItem(leftChunks, leftChunkWeights);
+                    if (player.GetPlayerYPos() * 2 >= milestone)
+                    {
+                        Debug.Log("milestone reached, should spawn shop");
+                        chunk = leftChunks[2]; // Hard coded for now
+                        milestone += milestone *2;
+                    } else {
+                        chunk = GetWeightedRandomItem(leftChunks, leftChunkWeights);
+                    }
+
                     isLeft = false;
                 } else {
                     chunk = GetWeightedRandomItem(rightChunks, rightChunkWeights);
@@ -127,7 +137,7 @@ public class ChunkManager : MonoBehaviour
         }
         
         // Generate a random number between 0 and totalWeight
-        float randomNumber = Random.Range(0f, totalWeight);
+        float randomNumber = UnityEngine.Random.Range(0f, totalWeight);
         
         // Determine the item that corresponds to this random number
         for (int i = 0; i < weights.Length; i++)

@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     bool canMove = true;
     Vector2 lastMoveInput;
-    /*---------------------SOUNDS---------------------*/
     [SerializeField] AttackBox ab;
+    [SerializeField] AttackUpBox aub;
+    /*---------------------SOUNDS---------------------*/
     [SerializeField] private AudioClip[] walkSounds;
     [SerializeField] private AudioClip[] attackSounds;
     [SerializeField] private AudioClip[] dmgSounds;
@@ -88,6 +89,9 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Dash()
     {
+        if (!canMove){
+            yield break;
+        }
         canDash = false;
         isDashing = true;
         isInvincible = true;
@@ -113,6 +117,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TriggerUpAttack(InputAction.CallbackContext context) 
+    {
+        if (context.performed && GameSysHandler.instance.GetPauseState() == false) {
+            anim.SetTrigger("AttackUp");
+            Debug.Log("Attacking oblivion");
+        }
+    }
+
     public void TakeDamage(int amount) {
         if (isInvincible) return;
 
@@ -125,11 +137,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // public void Attack() {
+    //     SoundFXManager.instance.PlayRandomSoundFXClip(attackSounds, transform, 1f);
+    //     ab.EnableAttackBox();
+    // }
+
     // This method is triggered by an anim event so that it matches up with the sword swing
-    public void Attack() {
+    public void Attack(string animName) {
+        Debug.Log(animName);
         SoundFXManager.instance.PlayRandomSoundFXClip(attackSounds, transform, 1f);
-        ab.EnableAttackBox();
+
+        if (animName == "Attack")
+        {
+            // perform simple attack
+            ab.EnableAttackBox();
+            return;
+        }
+
+        if (animName == "AttackUp")
+        {
+            aub.EnableAttackBox();
+        }
     }
+
 
     public void LockMovement() {
         canMove = false;
@@ -138,12 +168,23 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
     }
-    public void UnlockMovement() {
+    public void UnlockMovement(string animName) {
         canMove = true;
         rb.linearVelocity = moveInput * moveSpeed;
 
         // Attack logic
-        ab.DisableAttackBox();
+
+        if (animName == "Attack")
+        {
+            // perform simple attack
+            ab.DisableAttackBox();
+            return;
+        }
+
+        if (animName == "AttackUp")
+        {
+            aub.DisableAttackBox();
+        }
     }
 
     public int GetPlayerYPos() {
@@ -187,10 +228,6 @@ public class PlayerController : MonoBehaviour
 
     public void AddToGold(int amount)
     {
-        // if (gameObject != null)
-        // {
-        //     SoundFXManager.instance.PlaySoundFXClip(pickupSound, transform, 0.7f);
-        // }
         gold += amount;
     }
 
